@@ -1,0 +1,67 @@
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+#header {
+	padding-left: 20%;
+	background-color: teal;
+}
+
+#menu {
+	float: left;
+	width: 20%;
+}
+
+#content {
+	float: left;
+	width: 40%;
+	margin: 20px;
+}
+
+
+#sidebar {
+	float: right;
+	width: 30%;
+}
+
+
+@media screen and (max-width: 600px) {
+    #menu, #content, #sidebar {
+        width: 100%;
+    }
+}
+
+#sidebar th {
+	background-color: teal;
+	color: white;
+}
+
+#sidebar td {
+	vertical-align: top;
+}
+
+body {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.error {
+	color: red;
+}
+
+input {
+	width: 100%;
+}
+
+h1 {
+	color: white;
+}
+
+h2 {
+	color: teal;
+}
+
+a {
+	color: teal;
+}
