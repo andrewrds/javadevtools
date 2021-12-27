@@ -41,7 +41,7 @@
                 <div>
                     <p>
                         Format Pattern
-                        <input id="inputFormat" placeholder="yyyy-MM-dd'T'HH:mm:ss" oninput="sendFormatRequest(event)"/>
+                        <input id="inputFormat" placeholder="yyyy-MM-dd'T'HH:mm:ss" autocomplete="off" oninput="sendFormatRequest(event)"/>
                     </p>
 
                     <p>
