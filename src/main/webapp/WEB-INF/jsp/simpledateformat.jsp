@@ -6,8 +6,8 @@
 		<title>Java SimpleDateFormat Tester</title>
 		<link href="page.css" rel="stylesheet">
 		<meta content="Test your Java SimpleDateFormat format patterns with this online tool. Enter a date format pattern to see immediately how the current date will be formatted." name="description" />
-		<script src="/webjars/jquery/3.6.0/jquery.min.js" async></script>
-		<script src="/simpledateformat.js" async></script>
+		<script src="/webjars/jquery/3.6.0/jquery.min.js" async="true"></script>
+		<script src="/simpledateformat.js" async="true"></script>
 	</head>
 	<body>
 		<div id="header">
