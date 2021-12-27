@@ -1,7 +1,7 @@
 package com.javadevtools;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +15,7 @@ import java.util.TimeZone;
 @RestController
 public class SimpleDateFormatRestController {
 
-	@RequestMapping("/simpledateformat/format")
+	@GetMapping("/simpledateformat/format")
 	public Map<String, Object> format(
 			@RequestParam String pattern,
 			@RequestParam String locale,
