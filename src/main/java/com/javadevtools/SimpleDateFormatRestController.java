@@ -17,14 +17,19 @@ public class SimpleDateFormatRestController {
 	@RequestMapping("/simpledateformat/format")
 	public Map<String, Object> format(@RequestParam String pattern) {
 		Map<String, Object> result = new HashMap<>();
-		try {
-			SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-			String value = formatter.format(new Date());
 
-			result.put("value", value);
-		} catch (IllegalArgumentException e) {
-			result.put("value", e.getMessage());
-			result.put("error", true);
+		if (pattern.isBlank()) {
+			result.put("value", "Empty input");
+		} else {
+			try {
+				SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+				String value = formatter.format(new Date());
+
+				result.put("value", value);
+			} catch (IllegalArgumentException e) {
+				result.put("value", e.getMessage());
+				result.put("error", true);
+			}
 		}
 
 		return result;

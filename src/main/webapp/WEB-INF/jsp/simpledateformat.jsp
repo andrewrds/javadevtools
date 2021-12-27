@@ -58,8 +58,7 @@
             </form>
 
             <div>
-                <p id="result">
-                </p>
+                <p id="result">Empty input</p>
             </div>
 
 
