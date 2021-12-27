@@ -15,10 +15,10 @@
 		</div>
 		<div id="menu">
 			<p>
-				<a href="simpledateformat.html">SimpleDateFormat Tester</a>
+				<a href="simpledateformat">SimpleDateFormat Tester</a>
 			</p>
 			<p>
-				<a href="datetimeformatter.html">DateTimeFormatter Tester</a>
+				<a href="datetimeformatter">DateTimeFormatter Tester</a>
 			</p>
 		</div>
 		<div id="content">
