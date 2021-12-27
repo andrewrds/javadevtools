@@ -1,7 +1,8 @@
 function sendFormatRequest(event) {
     jQuery.ajax({
         url: '/simpledateformat/format',
-        data: { pattern: jQuery('#inputFormat').val()},
+        data: { pattern: jQuery('#inputFormat').val(),
+                locale: jQuery('#inputLocale').val() },
         success: function(result) {
             jQuery('#result').text(result.value);
             if (result.error) {

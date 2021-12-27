@@ -46,7 +46,7 @@
 
                     <p>
                         Locale
-                        <select>
+                        <select id="inputLocale" oninput="sendFormatRequest(event)">
                             <c:forEach var="l" items="${locales}">
                                 <option value="${fn:escapeXml(l.toLanguageTag())}" ${l.toLanguageTag().equals("en-US") ? 'selected' : ''}>
                                     <c:out value="${l.displayName}"/>
