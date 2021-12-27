@@ -16,11 +16,17 @@ public class SimpleDateFormatRestController {
 
 	@RequestMapping("/simpledateformat/format")
 	public Map<String, Object> format(@RequestParam String pattern) {
-		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-		String value = formatter.format(new Date());
-
 		Map<String, Object> result = new HashMap<>();
-		result.put("value", value);
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+			String value = formatter.format(new Date());
+
+			result.put("value", value);
+		} catch (IllegalArgumentException e) {
+			result.put("value", e.getMessage());
+			result.put("error", true);
+		}
+
 		return result;
 	}
 }

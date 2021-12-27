@@ -4,6 +4,11 @@ function sendFormatRequest(event) {
         data: { pattern: jQuery('#inputFormat').val()},
         success: function(result) {
             jQuery('#result').text(result.value);
+            if (result.error) {
+                jQuery('#result').addClass('error');
+            } else {
+                jQuery('#result').removeClass('error');
+            }
         }
     });
 }
