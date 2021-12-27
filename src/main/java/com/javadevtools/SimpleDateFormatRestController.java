@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 @RestController
 public class SimpleDateFormatRestController {
@@ -17,7 +18,8 @@ public class SimpleDateFormatRestController {
 	@RequestMapping("/simpledateformat/format")
 	public Map<String, Object> format(
 			@RequestParam String pattern,
-			@RequestParam String locale) {
+			@RequestParam String locale,
+			@RequestParam String timeZone) {
 		Map<String, Object> result = new HashMap<>();
 
 		if (pattern.isBlank()) {
@@ -26,6 +28,10 @@ public class SimpleDateFormatRestController {
 			try {
 				Locale localeObject = Locale.forLanguageTag(locale);
 				SimpleDateFormat formatter = new SimpleDateFormat(pattern, localeObject);
+				
+				TimeZone timeZoneObject = TimeZone.getTimeZone(timeZone);
+				formatter.setTimeZone(timeZoneObject);
+				
 				String value = formatter.format(new Date());
 
 				result.put("value", value);

@@ -14,10 +14,14 @@ public class SimpleDateFormatController {
 
 	@Autowired
 	private JavaVersionService javaVersionService;
+	
+	@Autowired
+	private TimeZoneService timeZoneService;
 
 	@RequestMapping("/simpledateformat")
 	public String main(Map<String, Object> model) {
 		model.put("locales", localeService.getLocales());
+		model.put("timeZones", timeZoneService.getTimeZones());
 		model.put("javaVersion", javaVersionService.getJavaVersion());
 		return "simpledateformat";
 	}

@@ -54,6 +54,17 @@
                             </c:forEach>
                         </select>
                     </p>
+                    
+                    <p>
+                    	Time Zone
+                    	<select id="inputTimeZone" oninput="sendFormatRequest(event)">
+                            <c:forEach var="z" items="${timeZones}">
+                                <option value="${fn:escapeXml(z.ID)}" ${z.ID.equals("America/New_York") ? 'selected' : ''}>
+                                    <c:out value="${z.ID}"/>
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </p>
                 </div>
             </form>
 
