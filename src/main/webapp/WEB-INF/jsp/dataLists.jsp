@@ -2,7 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <datalist id="localesList">
     <c:forEach var="l" items="${locales}">
-        <option value="${fn:escapeXml(l.toLanguageTag())}">
+        <option value="${fn:escapeXml(l.toLanguageTag())}: ${fn:escapeXml(l.displayName)}">
             <c:out value="${l.toLanguageTag()}: ${l.displayName}"/>
         </option>
     </c:forEach>

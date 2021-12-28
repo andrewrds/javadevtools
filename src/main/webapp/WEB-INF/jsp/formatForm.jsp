@@ -17,7 +17,7 @@
                    autocomplete="off"
                    oninput="sendFormatRequest('${param.url}')"
                    list="localesList"
-                   value="en-US" />
+                   value="en-US: English (United States)" />
         </p>
         
         <p>

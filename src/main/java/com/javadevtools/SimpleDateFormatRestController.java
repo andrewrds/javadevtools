@@ -28,6 +28,11 @@ public class SimpleDateFormatRestController {
 			if (pattern.isBlank()) {
 				result.put("value", "Empty input");
 			} else {
+				int colonIndex = locale.indexOf(':');
+				if (colonIndex != -1) {
+					locale = locale.substring(0, colonIndex);
+				}
+				
 				Locale localeObject = Locale.forLanguageTag(locale);
 				SimpleDateFormat formatter = new SimpleDateFormat(pattern, localeObject);
 
