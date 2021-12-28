@@ -32,44 +32,9 @@
 			are thread safe and immutable so the same instance can be used from
 			multiple threads.</p>
 
-            <form id="dateformat">
-                <div>
-                    <p>
-                        Format Pattern
-                        <input id="inputFormat"
-                               placeholder="yyyy-MM-dd'T'HH:mm:ss"
-                               autocomplete="off"
-                               maxlength="300"
-                               oninput="sendFormatRequest('datetimeformatter/format')"/>
-                    </p>
-
-                    <p>
-                        Locale
-                        <input id="inputLocale"
-                               autocomplete="off"
-                               oninput="sendFormatRequest('datetimeformatter/format')"
-                               list="localesList"
-                               value="en-US" />
-                    </p>
-                    
-                    <p>
-                    	Time Zone
-                    	<input id="inputTimeZone"
-                    	       autocomplete="off"
-                    	       oninput="sendFormatRequest('datetimeformatter/format')"
-                    	       list="timeZonesList"
-                    	       value="America/New_York"/>
-                    </p>                
-                </div>
-            </form>
-
-            <div>
-                <p id="result">Empty input</p>
-            </div>
-
-		    <p>
-		        Java Version: <c:out value="${javaVersion}" />
-		    </p>
+			<jsp:include page="formatForm.jsp">
+				<jsp:param name="url" value="datetimeformatter/format" />
+			</jsp:include>
         </div>
         
         <jsp:directive.include file="dataLists.jsp"/>

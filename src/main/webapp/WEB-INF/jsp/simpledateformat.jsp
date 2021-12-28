@@ -33,45 +33,10 @@
 			    API.
 		    </p>
 		    <p>Enter a Java SimpleDateFormat pattern to see immediately how the current date will be formatted.</p>
-            <form id="dateformat">
-                <div>
-                    <p>
-                        Format Pattern
-                        <input id="inputFormat"
-                               placeholder="yyyy-MM-dd'T'HH:mm:ss"
-                               autocomplete="off"
-                               maxlength="300"
-                               oninput="sendFormatRequest('simpledateformat/format')"/>
-                    </p>
 
-                    <p>
-                        Locale
-                        <input id="inputLocale"
-                               autocomplete="off"
-                               oninput="sendFormatRequest('simpledateformat/format')"
-                               list="localesList"
-                               value="en-US" />
-                    </p>
-                    
-                    <p>
-                    	Time Zone
-                    	<input id="inputTimeZone"
-                    	       autocomplete="off"
-                    	       oninput="sendFormatRequest('simpledateformat/format')"
-                    	       list="timeZonesList"
-                    	       value="America/New_York"/>
-                    </p>
-                </div>
-            </form>
-
-            <div>
-                <p id="result">Empty input</p>
-            </div>
-
-
-		    <p>
-		        Java Version: <c:out value="${javaVersion}" />
-		    </p>
+			<jsp:include page="formatForm.jsp">
+				<jsp:param name="url" value="simpledateformat/format" />
+			</jsp:include>
 
             <h2>Common Issues</h2>
             <ul>
