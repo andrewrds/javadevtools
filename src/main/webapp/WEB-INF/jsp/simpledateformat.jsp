@@ -14,9 +14,7 @@
 			<h1>Java SimpleDateFormat Tester</h1>
 		</div>
 		<div id="menu">
-			<p>
-				<a href="simpledateformat">SimpleDateFormat Tester</a>
-			</p>
+			<p>SimpleDateFormat Tester</p>
 			<p>
 				<a href="datetimeformatter">DateTimeFormatter Tester</a>
 			</p>

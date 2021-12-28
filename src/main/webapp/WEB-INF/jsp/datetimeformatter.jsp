@@ -17,9 +17,7 @@
 			<p>
 				<a href="simpledateformat">SimpleDateFormat Tester</a>
 			</p>
-			<p>
-				<a href="datetimeformatter">DateTimeFormatter Tester</a>
-			</p>
+			<p>DateTimeFormatter Tester</p>
 		</div>
 		<div id="content">
 	        <p>
