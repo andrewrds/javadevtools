@@ -1,6 +1,6 @@
 function sendFormatRequest(event) {
     jQuery.ajax({
-        url: '/datetimeformatter/format',
+        url: 'datetimeformatter/format',
         data: { pattern: jQuery('#inputFormat').val(),
                 locale: jQuery('#inputLocale').val(),
                 timeZone: jQuery('#inputTimeZone').val() },
