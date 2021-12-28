@@ -7,7 +7,7 @@
 		<link href="page.css" rel="stylesheet">
 		<meta content="Test your Java DateTimeFormatter format patterns with this online tool. Enter a date format pattern to see immediately how the current date will be formatted." name="description" />
 		<script src="webjars/jquery/3.6.0/jquery.min.js" async="true"></script>
-		<script src="datetimeformatter.js" async="true"></script>
+		<script src="javadevtools.js" async="true"></script>
 	</head>
 	<body>
 		<div id="header">
@@ -44,7 +44,7 @@
                                placeholder="yyyy-MM-dd'T'HH:mm:ss"
                                autocomplete="off"
                                maxlength="300"
-                               oninput="sendFormatRequest(event)"/>
+                               oninput="sendFormatRequest('datetimeformatter/format')"/>
                     </p>
 
                     <p>

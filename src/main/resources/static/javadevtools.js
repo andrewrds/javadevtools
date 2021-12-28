@@ -1,6 +1,6 @@
-function sendFormatRequest(event) {
+function sendFormatRequest(url) {
     jQuery.ajax({
-        url: 'simpledateformat/format',
+        url: url,
         data: { pattern: jQuery('#inputFormat').val(),
                 locale: jQuery('#inputLocale').val(),
                 timeZone: jQuery('#inputTimeZone').val() },
