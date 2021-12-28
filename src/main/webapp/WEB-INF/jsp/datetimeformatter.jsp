@@ -54,25 +54,21 @@
 
                     <p>
                         Locale
-                        <select id="inputLocale" oninput="sendFormatRequest(event)">
-                            <c:forEach var="l" items="${locales}">
-                                <option value="${fn:escapeXml(l.toLanguageTag())}" ${l.toLanguageTag().equals("en-US") ? 'selected' : ''}>
-                                    <c:out value="${l.displayName}"/>
-                                </option>
-                            </c:forEach>
-                        </select>
+                        <input id="inputLocale"
+                               autocomplete="off"
+                               oninput="sendFormatRequest('datetimeformatter/format')"
+                               list="localesList"
+                               value="en-US" />
                     </p>
                     
                     <p>
                     	Time Zone
-                    	<select id="inputTimeZone" oninput="sendFormatRequest(event)">
-                            <c:forEach var="z" items="${timeZones}">
-                                <option value="${fn:escapeXml(z.ID)}" ${z.ID.equals("America/New_York") ? 'selected' : ''}>
-                                    <c:out value="${z.ID}"/>
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </p>
+                    	<input id="inputTimeZone"
+                    	       autocomplete="off"
+                    	       oninput="sendFormatRequest('datetimeformatter/format')"
+                    	       list="timeZonesList"
+                    	       value="America/New_York"/>
+                    </p>                
                 </div>
             </form>
 
@@ -84,5 +80,7 @@
 		        Java Version: <c:out value="${javaVersion}" />
 		    </p>
         </div>
+        
+        <jsp:directive.include file="dataLists.jsp"/>
 	</body>
 </html>
