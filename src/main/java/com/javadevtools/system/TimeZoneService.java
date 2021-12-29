@@ -1,17 +1,18 @@
 package com.javadevtools.system;
 
-import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class TimeZoneService {
-    private List<TimeZone> timeZones;
-
-    @PostConstruct
-    private void init() {
+    private final List<TimeZone> timeZones;
+    
+    public TimeZoneService() {
     	timeZones = Arrays.stream(TimeZone.getAvailableIDs())
     			.map(id -> TimeZone.getTimeZone(id))
     			.sorted(Comparator.comparing(TimeZone::getID))
