@@ -1,22 +1,25 @@
 package com.javadevtools;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Map;
-
 @Controller
 public class DateTimeFormatterController {
-	@Autowired
-	private LocaleService localeService;
-
-	@Autowired
-	private JavaVersionService javaVersionService;
+	private final LocaleService localeService;
+	private final JavaVersionService javaVersionService;
+	private final TimeZoneService timeZoneService;
 	
-	@Autowired
-	private TimeZoneService timeZoneService;
+	public DateTimeFormatterController(
+			LocaleService localeService,
+			JavaVersionService javaVersionService,
+			TimeZoneService timeZoneService) {
+		this.localeService = localeService;
+		this.javaVersionService = javaVersionService;
+		this.timeZoneService = timeZoneService;
+	}
 
 	@GetMapping("/datetimeformatter")
 	public String main(Map<String, Object> model) {

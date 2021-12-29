@@ -1,8 +1,8 @@
 package com.javadevtools;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class JavaVersionService {
 	private static final String javaVersion = System.getProperty("java.version");
 

@@ -1,23 +1,26 @@
 package com.javadevtools;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Map;
-
 @Controller
 public class SimpleDateFormatController {
-	@Autowired
-	private LocaleService localeService;
-
-	@Autowired
-	private JavaVersionService javaVersionService;
-
-	@Autowired
-	private TimeZoneService timeZoneService;
+	private final LocaleService localeService;
+	private final JavaVersionService javaVersionService;
+	private final TimeZoneService timeZoneService;
+	
+	public SimpleDateFormatController(
+			LocaleService localeService,
+			JavaVersionService javaVersionService,
+			TimeZoneService timeZoneService) {
+		this.localeService = localeService;
+		this.javaVersionService = javaVersionService;
+		this.timeZoneService = timeZoneService;
+	}
 
 	@GetMapping("/simpledateformat")
 	public String main(Map<String, Object> model) {

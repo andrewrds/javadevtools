@@ -1,12 +1,12 @@
 package com.javadevtools;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 public class LocaleService {
     private List<Locale> locales;
 
