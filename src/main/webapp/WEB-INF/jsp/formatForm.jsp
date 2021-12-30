@@ -14,7 +14,9 @@
         <label for="inputLocale">Locale</label>
         <input id="inputLocale"
                autocomplete="off"
+               maxlength="100"
                oninput="sendFormatRequest('${param.url}')"
+               onclick="this.select()"
                list="localesList"
                value="en-US: English (United States)" />
     </div>
@@ -23,7 +25,9 @@
     	<label for="inputTimeZone">Time Zone</label>
     	<input id="inputTimeZone"
     	       autocomplete="off"
+    	       maxlength="100"
     	       oninput="sendFormatRequest('${param.url}')"
+    	       onclick="this.select()"
     	       list="timeZonesList"
     	       value="America/New_York"/>
     </div>
