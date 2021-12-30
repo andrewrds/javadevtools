@@ -12,11 +12,15 @@ public class FormtterService {
 	public Map<String, Object> format(DateFormatParams params, IDateFormatterWrapper formatter) {
 		Map<String, Object> result = new HashMap<>();
 		
-		Locale locale = Locale.forLanguageTag(params.getLocale());
-		String value = formatter.format(params.getPattern(), locale, params.getTimeZone());
-		
-		result.put("value", value);
-		
+		try {
+			Locale locale = Locale.forLanguageTag(params.getLocale());
+			String value = formatter.format(params.getPattern(), locale, params.getTimeZone());
+			result.put("value", value);
+		} catch (IllegalArgumentException e) {
+			result.put("value", e.getMessage());
+			result.put("error", true);
+		}
+
 		return result;
 	}
 }
