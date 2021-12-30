@@ -20,13 +20,7 @@ public class DateTimeFormatterRestController {
 	public Map<String, Object> format(@Valid DateFormatParams params) {
 		Map<String, Object> result = new HashMap<>();
 
-		String locale = params.getLocale();
-		int colonIndex = locale.indexOf(':');
-		if (colonIndex != -1) {
-			locale = locale.substring(0, colonIndex);
-		}
-
-		Locale localeObject = Locale.forLanguageTag(locale);
+		Locale localeObject = Locale.forLanguageTag(params.getLocale());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(params.getPattern(), localeObject);
 
 		Instant now = Instant.now();

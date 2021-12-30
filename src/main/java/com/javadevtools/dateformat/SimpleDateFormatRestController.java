@@ -19,13 +19,7 @@ public class SimpleDateFormatRestController {
 	public Map<String, Object> format(@Valid DateFormatParams params) {
 		Map<String, Object> result = new HashMap<>();
 
-		String locale = params.getLocale();
-		int colonIndex = locale.indexOf(':');
-		if (colonIndex != -1) {
-			locale = locale.substring(0, colonIndex);
-		}
-
-		Locale localeObject = Locale.forLanguageTag(locale);
+		Locale localeObject = Locale.forLanguageTag(params.getLocale());
 		SimpleDateFormat formatter = new SimpleDateFormat(params.getPattern(), localeObject);
 
 		TimeZone timeZoneObject = TimeZone.getTimeZone(params.getTimeZone());
