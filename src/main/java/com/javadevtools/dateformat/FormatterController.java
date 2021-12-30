@@ -27,17 +27,19 @@ public class FormatterController {
 	
 	@GetMapping("/simpledateformat")
 	public String displaySimpleDateFormatPage(Map<String, Object> model) {
-		model.put("locales", localeService.getLocales());
-		model.put("timeZones", timeZoneService.getTimeZones());
-		model.put("javaVersion", javaVersionService.getJavaVersion());
+		populateModel(model);
 		return "simpledateformat";
 	}
 
 	@GetMapping("/datetimeformatter")
 	public String displayDateTimeFormatterPage(Map<String, Object> model) {
+		populateModel(model);
+		return "datetimeformatter";
+	}
+	
+	private void populateModel(Map<String, Object> model) {
 		model.put("locales", localeService.getLocales());
 		model.put("timeZones", timeZoneService.getTimeZones());
 		model.put("javaVersion", javaVersionService.getJavaVersion());
-		return "datetimeformatter";
 	}
 }
