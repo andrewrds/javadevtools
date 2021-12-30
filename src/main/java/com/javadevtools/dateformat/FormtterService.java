@@ -13,7 +13,7 @@ public class FormtterService {
 		Map<String, Object> result = new HashMap<>();
 
 		try {
-			Locale locale = Locale.forLanguageTag(params.getLocale());
+			Locale locale = new Locale.Builder().setLanguageTag(params.getLocale()).build();
 			String value = formatter.format(params.getPattern(), locale, params.getTimeZone());
 			result.put("value", value);
 		} catch (RuntimeException e) {
