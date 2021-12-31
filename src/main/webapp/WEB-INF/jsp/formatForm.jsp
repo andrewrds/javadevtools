@@ -37,6 +37,6 @@
     <p id="result">Empty input</p>
 </div>
 
-<p>
+<p id="javaVersion">
     Java Version: <c:out value="${javaVersion}" />
 </p>
