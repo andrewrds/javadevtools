@@ -33,7 +33,7 @@
     </div>
 </form>
 
-<div>
+<div class="resultPanel">
     <p id="result">Empty input</p>
 </div>
 

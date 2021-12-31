@@ -67,7 +67,16 @@ body {
 #dateformat input {
     display: table-cell;
     width: 100%;
-    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.resultPanel {
+	background-color: #E3E3E3;
+	padding: 10px;
+	width: 100%;
+	border-style: solid;
+	border-color: black;
+	border-width: thin;
 }
 
 h1 {
