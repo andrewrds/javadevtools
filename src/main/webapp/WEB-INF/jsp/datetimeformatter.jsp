@@ -11,12 +11,11 @@
 		<div id="header">
 			<h1>Java DateTimeFormatter Tester</h1>
 		</div>
-		<div id="menu">
-			<p>
-				<a href="simpledateformat">SimpleDateFormat Tester</a>
-			</p>
-			<p>DateTimeFormatter Tester</p>
-		</div>
+		
+		<jsp:include page="menu.jsp">
+			<jsp:param name="page" value="datetimeformatter" />
+		</jsp:include>
+		
 		<div id="content">
 	        <p>
 				The
