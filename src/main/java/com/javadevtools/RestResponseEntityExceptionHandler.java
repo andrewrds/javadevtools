@@ -1,4 +1,4 @@
-package com.javadevtools.dateformat;
+package com.javadevtools;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,12 +31,20 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 		Map<String, Object> result = new HashMap<>();
 		result.put("value", firstError.getDefaultMessage());
 
-		if (!(firstError.getObjectName().equals("dateFormatParams") 
-				&& firstError.getField().equals("pattern") 
-				&& firstError.getCode().equals("NotBlank"))) {
+		if (!isError(firstError, "dateFormatParams", "pattern", "NotBlank")
+				&& !isError(firstError, "parseParams", "pattern", "NotBlank")
+				&& !isError(firstError, "parseParams", "text", "NotBlank")
+				&& !isError(firstError, "parseParamsWithTimeZone", "pattern", "NotBlank")
+				&& !isError(firstError, "parseParamsWithTimeZone", "text", "NotBlank")) {
 			result.put("error", true);
 		}
 
 		return handleExceptionInternal(ex, result, headers, HttpStatus.OK, request);
+	}
+	
+	private boolean isError(FieldError error, String objectName, String field, String code) {
+		return error.getObjectName().equals(objectName)
+				&& error.getField().equals(field) 
+				&& error.getCode().equals(code);
 	}
 }

@@ -3,21 +3,41 @@
 
 
 <div id="menu">
-	<p>
+	<p>SimpleDateFormat</p>
+	<p>&nbsp;
 		<c:choose>
-			<c:when test="${param.page == 'simpledateformat'}">SimpleDateFormat Tester</c:when>
+			<c:when test="${param.page == 'simpledateformat'}">format</c:when>
 			<c:otherwise>
-				<a href="simpledateformat">SimpleDateFormat Tester</a>
+				<a href="simpledateformat">format</a>
 			</c:otherwise>
 		</c:choose>
 	</p>
 	
-	<p>
+	<p>&nbsp;
 		<c:choose>
-			<c:when test="${param.page == 'datetimeformatter'}">DateTimeFormatter Tester</c:when>
+			<c:when test="${param.page == 'simpledateformatparse'}">parse</c:when>
 			<c:otherwise>
-				<a href="datetimeformatter">DateTimeFormatter Tester</a>
+				<a href="simpledateformatparse">parse</a>
+			</c:otherwise>
+		</c:choose>
+	</p>
+	
+	<p>DateTimeFormatter</p>
+	<p>&nbsp;
+		<c:choose>
+			<c:when test="${param.page == 'datetimeformatter'}">format</c:when>
+			<c:otherwise>
+				<a href="datetimeformatter">format</a>
 			</c:otherwise>
 		</c:choose>
 	</p>	
+	
+	<p>&nbsp;
+		<c:choose>
+			<c:when test="${param.page == 'datetimeformatterparse'}">parse</c:when>
+			<c:otherwise>
+				<a href="datetimeformatterparse">parse</a>
+			</c:otherwise>
+		</c:choose>
+	</p>			
 </div>

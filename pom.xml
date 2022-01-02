@@ -60,6 +60,12 @@
 			<artifactId>jquery</artifactId>
 			<version>3.6.0</version>
 		</dependency>
+		
+		<dependency>
+  			<groupId>org.threeten</groupId>
+  			<artifactId>threeten-extra</artifactId>
+  			<version>1.7.0</version>
+		</dependency>		
 	</dependencies>
 
 	<build>
