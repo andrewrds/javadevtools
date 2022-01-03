@@ -44,3 +44,20 @@ function sendParseRequest(url) {
         }
     });
 }
+
+function sendHashGenerateRequest() {
+	    jQuery.ajax({
+        url: 'hash/generate',
+        data: { text: jQuery('#inputText').val() },
+        success: function(result) {
+            jQuery('#md5result').val(result.MD5);
+			jQuery('#sha1result').val(result.SHA1);
+			jQuery('#sha256result').val(result.SHA_256);
+			jQuery('#sha512result').val(result.SHA_512);
+        }
+    });
+}
+
+function copyText(id) {
+	 navigator.clipboard.writeText(jQuery('#' + id).val());
+}

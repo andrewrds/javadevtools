@@ -65,7 +65,13 @@
   			<groupId>org.threeten</groupId>
   			<artifactId>threeten-extra</artifactId>
   			<version>1.7.0</version>
-		</dependency>		
+		</dependency>	
+		
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.15</version>
+		</dependency>
 	</dependencies>
 
 	<build>

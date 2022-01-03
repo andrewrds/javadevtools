@@ -39,5 +39,14 @@
 				<a href="datetimeformatterparse">parse</a>
 			</c:otherwise>
 		</c:choose>
-	</p>			
+	</p>
+	
+	<p>
+		<c:choose>
+			<c:when test="${param.page == 'hash'}">Hash Generator</c:when>
+			<c:otherwise>
+				<a href="hash">Hash Generator</a>
+			</c:otherwise>
+		</c:choose>
+	</p>				
 </div>

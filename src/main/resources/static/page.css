@@ -70,6 +70,11 @@ body {
     margin-bottom: 10px;
 }
 
+#hashgenerator textarea {
+	resize: vertical;
+	width: 100%;
+}
+
 .resultPanel {
 	background-color: #E3E3E3;
 	width: 100%;
@@ -86,6 +91,33 @@ body {
 	text-align: right;
 	font-size: 8px;
 }
+
+.resulttable {
+	display: table;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.resultrow {
+	display: table-row;
+}
+
+.resultname {
+	display: table-cell;
+}
+
+.resultvalue {
+	display: table-cell;
+	width: 80%;
+	margin: 1px;
+}
+
+.resultbutton {
+	display: table-cell;
+	margin: 1px;
+}
+
+
 
 h1 {
 	color: white;
