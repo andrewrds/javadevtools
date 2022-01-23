@@ -2,6 +2,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <form id="dateformat">
     <div>
+        <label for="inputText">Text</label>
+        <input id="inputText"
+               autocomplete="off"
+               maxlength="300"
+               oninput="sendParseRequest('${param.url}')"/>
+    </div>    
+
+    <div>
         <label for="inputFormat">Format Pattern</label>
         <input id="inputFormat"
                placeholder="yyyy-MM-dd'T'HH:mm:ss"
@@ -9,14 +17,6 @@
                maxlength="300"
                oninput="sendParseRequest('${param.url}')"/>
     </div>
-    
-    <div>
-        <label for="inputText">Text</label>
-        <input id="inputText"
-               autocomplete="off"
-               maxlength="300"
-               oninput="sendParseRequest('${param.url}')"/>
-    </div>    
 
     <div>
         <label for="inputLocale">Locale</label>
