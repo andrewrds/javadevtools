@@ -20,4 +20,9 @@ public class DateTimeFormatterWrapper implements IDateFormatterWrapper {
 		return formatter.format(zonedDateTime);
 	}
 
+	@Override
+	public FormatterType getType() {
+		return FormatterType.DateTimeFormatter;
+	}
+
 }

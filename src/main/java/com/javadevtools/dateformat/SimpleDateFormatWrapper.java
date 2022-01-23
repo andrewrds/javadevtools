@@ -19,4 +19,9 @@ public class SimpleDateFormatWrapper implements IDateFormatterWrapper {
 		return formatter.format(new Date());
 	}
 
+	@Override
+	public FormatterType getType() {
+		return FormatterType.SimpleDateFormat;
+	}
+
 }

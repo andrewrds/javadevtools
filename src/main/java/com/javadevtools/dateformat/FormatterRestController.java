@@ -2,6 +2,7 @@ package com.javadevtools.dateformat;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,18 @@ public class FormatterRestController {
 	}
 	
 	@GetMapping("/simpledateformat/format")
-	public Map<String, Object> simpleDateFormat(@Valid DateFormatParams params) {
-		return formatterService.format(params, simpleDateFormatWrapper);
+	public Map<String, Object> simpleDateFormat(@Valid DateFormatParams params, HttpSession session) {
+		return formatterService.format(
+				session.getId(),
+				params,
+				simpleDateFormatWrapper);
 	}
 
 	@GetMapping("/datetimeformatter/format")
-	public Map<String, Object> dateTimeFormat(@Valid DateFormatParams params) {
-		return formatterService.format(params, dateTimeFormatterWrapper);
+	public Map<String, Object> dateTimeFormat(@Valid DateFormatParams params, HttpSession session) {
+		return formatterService.format(
+				session.getId(),
+				params,
+				dateTimeFormatterWrapper);
 	}
 }

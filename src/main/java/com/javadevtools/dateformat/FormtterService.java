@@ -4,12 +4,26 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Component;
+
+import com.javadevtools.logdb.FormatLogEntry;
 
 @Component
 public class FormtterService {
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	public Map<String, Object> format(DateFormatParams params, IDateFormatterWrapper formatter) {
+	@Transactional
+	public Map<String, Object> format(String sessionId, DateFormatParams params, IDateFormatterWrapper formatter) {
+		entityManager.persist(FormatLogEntry.create(
+				sessionId,
+				params.getPattern(),
+				formatter.getType()));
+		
 		Map<String, Object> result = new HashMap<>();
 
 		try {
