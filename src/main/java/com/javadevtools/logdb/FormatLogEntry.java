@@ -25,7 +25,7 @@ public class FormatLogEntry {
     private String sessionId;
     
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 300)
     private String formatPattern;
     
     @NotNull
