@@ -27,6 +27,8 @@ import org.threeten.extra.Quarter;
 import org.threeten.extra.YearQuarter;
 import org.threeten.extra.YearWeek;
 
+import com.javadevtools.dateformat.FormatterType;
+
 @Component
 public class DateTimeFormatterParseWrapper implements IDateParseWrapper {
 
@@ -57,6 +59,11 @@ public class DateTimeFormatterParseWrapper implements IDateParseWrapper {
 				ZoneOffset::from);
 		
 		return accessor.getClass().getSimpleName() + ": " + accessor.toString();
+	}
+
+	@Override
+	public FormatterType getType() {
+		return FormatterType.DateTimeFormatter;
 	}
 
 }

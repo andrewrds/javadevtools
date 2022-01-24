@@ -11,6 +11,8 @@ import java.util.TimeZone;
 
 import org.springframework.stereotype.Component;
 
+import com.javadevtools.dateformat.FormatterType;
+
 @Component
 public class SimpleDateFormatParseWrapper implements IDateParseWrapper {
 
@@ -23,6 +25,11 @@ public class SimpleDateFormatParseWrapper implements IDateParseWrapper {
 		Instant instant = formatter.parse(text).toInstant();
 		ZonedDateTime dateTime = ZonedDateTime.ofInstant(instant, zoneId);
 		return DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(dateTime);
+	}
+
+	@Override
+	public FormatterType getType() {
+		return FormatterType.SimpleDateFormat;
 	}
 
 }

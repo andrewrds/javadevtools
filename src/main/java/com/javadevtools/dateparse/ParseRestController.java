@@ -2,6 +2,7 @@ package com.javadevtools.dateparse;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,12 @@ public class ParseRestController {
 	}
 	
 	@GetMapping("/simpledateformat/parse")
-	public Map<String, Object> simpleDateFormat(@Valid ParseParamsWithTimeZone params) {
-		return parseService.format(params, simpleDateFormatWrapper);
+	public Map<String, Object> simpleDateFormat(@Valid ParseParamsWithTimeZone params, HttpSession session) {
+		return parseService.format(session.getId(), params, simpleDateFormatWrapper);
 	}
 
 	@GetMapping("/datetimeformatter/parse")
-	public Map<String, Object> dateTimeFormat(@Valid ParseParams params) {
-		return parseService.format(params, dateTimeFormatterWrapper);
+	public Map<String, Object> dateTimeFormat(@Valid ParseParams params, HttpSession session) {
+		return parseService.format(session.getId(), params, dateTimeFormatterWrapper);
 	}
 }
