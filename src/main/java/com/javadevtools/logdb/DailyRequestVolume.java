@@ -25,4 +25,12 @@ public class DailyRequestVolume {
     
     private long requestCount;
     
+	public static DailyRequestVolume create(LocalDate requestDate, RequestType requestType, long requestCount) {
+		DailyRequestVolume result = new DailyRequestVolume();
+		result.requestDate = requestDate;
+		result.requestType = requestType;
+		result.requestCount = requestCount;
+		return result;
+	}
+    
 }
