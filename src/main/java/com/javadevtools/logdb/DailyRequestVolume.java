@@ -32,5 +32,13 @@ public class DailyRequestVolume {
 		result.requestCount = requestCount;
 		return result;
 	}
+
+	public LocalDate getRequestDate() {
+		return requestDate;
+	}
+
+	public long getRequestCount() {
+		return requestCount;
+	}
     
 }
