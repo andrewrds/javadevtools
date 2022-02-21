@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.PersistenceContext;
+import javax.persistence.Tuple;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -38,6 +39,8 @@ public class DailyStatsService {
 		for (RequestType requestType : RequestType.values()) {
 			dataSets.add(getDataSet(requestType));
 		}
+		
+		dataSets.add(getTotalDataSet());
 
 		return dataSets;
 	}
@@ -53,24 +56,58 @@ public class DailyStatsService {
 
 		return dataSet;
 	}
+	
+	private Map<String, Object> getTotalDataSet() {
+		Map<String, Object> dataSet = new HashMap<>();
+		dataSet.put("label", "Total");
+		dataSet.put("data", getTotalQuery());
 
+		String color = "rgb(0, 0, 0)";
+		dataSet.put("borderColor", color);
+		dataSet.put("backgroundColor", color);
+
+		return dataSet;
+	}
+	
 	private List<Map<String, Object>> getDataQuery(RequestType requestType) {
 		LocalDate end = LocalDate.now();
 		LocalDate start = end.minusDays(30);
 
 		CriteriaBuilder b = session.getCriteriaBuilder();
 
-		CriteriaQuery<DailyRequestVolume> query = b.createQuery(DailyRequestVolume.class);
+		CriteriaQuery<Tuple> query = b.createQuery(Tuple.class);
 		Root<DailyRequestVolume> root = query.from(DailyRequestVolume.class);
 
-		query.select(root);
+		query.multiselect(root.get("requestCount"), root.get("requestDate"));
 		query.where(b.and(
 				b.equal(root.get("requestType"), requestType),
 				b.between(root.get("requestDate"), start, end)));
 		query.orderBy(b.asc(root.get("requestDate")));
 		
-		List<DailyRequestVolume> results = session.createQuery(query).getResultList();
+		List<Tuple> results = session.createQuery(query).getResultList();
+		return getDataFromTuple(results, start, end);
+	}
+	
+	private List<Map<String, Object>> getTotalQuery() {
+		LocalDate end = LocalDate.now();
+		LocalDate start = end.minusDays(30);
 
+		CriteriaBuilder b = session.getCriteriaBuilder();
+
+		CriteriaQuery<Tuple> query = b.createQuery(Tuple.class);
+		Root<DailyRequestVolume> root = query.from(DailyRequestVolume.class);
+
+		query.multiselect(b.sum(root.get("requestCount")), root.get("requestDate"));
+		query.where(b.and(
+				b.between(root.get("requestDate"), start, end)));
+		query.groupBy(root.get("requestDate"));
+		query.orderBy(b.asc(root.get("requestDate")));
+		
+		List<Tuple> results = session.createQuery(query).getResultList();
+		return getDataFromTuple(results, start, end);
+	}
+	
+	private List<Map<String, Object>> getDataFromTuple(List<Tuple> results, LocalDate start, LocalDate end) {
 		int resultIndex = 0;
 		List<Map<String, Object>> data = new ArrayList<>();
 		for (LocalDate d : start.datesUntil(end).collect(Collectors.toList())) {
@@ -79,9 +116,9 @@ public class DailyStatsService {
 
 			long count = 0;
 			if (resultIndex < results.size()) {
-				DailyRequestVolume stats = results.get(resultIndex);
-				if (stats.getRequestDate().equals(d)) {
-					count = stats.getRequestCount();
+				Tuple stats = results.get(resultIndex);
+				if (stats.get(1, LocalDate.class).equals(d)) {
+					count = stats.get(0, Long.class);
 					resultIndex++;
 				}
 			}
