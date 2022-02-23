@@ -41,35 +41,42 @@ public class GenerateDailyStatsTask {
 
 		LocalDate today = LocalDate.now();
 		for (RequestType requestType : RequestType.values()) {
-			LocalDate latestDate = getLatest(requestType);
-			LocalDateRange dateRange = LocalDateRange.of(latestDate.plusDays(1), today);
+			LocalDate latestRequestVolumeDate = getLatest(DailyRequestVolume.class, "requestDate", requestType);
+			LocalDateRange requestVolumeDateRange = LocalDateRange.of(latestRequestVolumeDate.plusDays(1), today);
+			
+			LocalDate latestDailySessionDate = getLatest(DailySession.class, "sessionDate", requestType);
+			LocalDateRange latestDailySessionDateRange = LocalDateRange.of(latestDailySessionDate.plusDays(1), today);
 
-			log.info("Generating stats for {} in range {}", requestType, dateRange);
+			log.info("Generating stats for {} in range {}", requestType, requestVolumeDateRange);
 
 			switch (requestType) {
 				case SimpleDateFormat:
-					updateFormatStats(requestType, FormatLogEntry.class, dateRange, FormatterType.SimpleDateFormat);
+					updateFormatStats(requestType, FormatLogEntry.class, requestVolumeDateRange, FormatterType.SimpleDateFormat);
+					updateSessionStats(requestType, FormatLogEntry.class, latestDailySessionDateRange, FormatterType.SimpleDateFormat);
 					break;
 				case DateTimeFormatter:
-					updateFormatStats(requestType, FormatLogEntry.class, dateRange, FormatterType.DateTimeFormatter);
+					updateFormatStats(requestType, FormatLogEntry.class, requestVolumeDateRange, FormatterType.DateTimeFormatter);
+					updateSessionStats(requestType, FormatLogEntry.class, latestDailySessionDateRange, FormatterType.DateTimeFormatter);
 					break;
 				case SimpleDateFormatParse:
-					updateFormatStats(requestType, ParseLogEntry.class, dateRange, FormatterType.SimpleDateFormat);
+					updateFormatStats(requestType, ParseLogEntry.class, requestVolumeDateRange, FormatterType.SimpleDateFormat);
+					updateSessionStats(requestType, ParseLogEntry.class, latestDailySessionDateRange, FormatterType.SimpleDateFormat);
 					break;					
 				case DateTimeFormatterParse:
-					updateFormatStats(requestType, ParseLogEntry.class, dateRange, FormatterType.DateTimeFormatter);
+					updateFormatStats(requestType, ParseLogEntry.class, requestVolumeDateRange, FormatterType.DateTimeFormatter);
+					updateSessionStats(requestType, ParseLogEntry.class, latestDailySessionDateRange, FormatterType.DateTimeFormatter);
 					break;
 			}
 		}
 	}
 
-	private LocalDate getLatest(RequestType type) {
+	private LocalDate getLatest(Class<?> table, String dateColumn, RequestType type) {
 		CriteriaBuilder b = session.getCriteriaBuilder();
 
 		CriteriaQuery<LocalDate> query = b.createQuery(LocalDate.class);
-		Root<DailyRequestVolume> l = query.from(DailyRequestVolume.class);
+		Root<?> l = query.from(table);
 
-		query.select(b.greatest(l.<LocalDate>get("requestDate")))
+		query.select(b.greatest(l.<LocalDate>get(dateColumn)))
 				.where(b.equal(l.get("requestType"), type));
 
 		return Optional.ofNullable(session.createQuery(query).getSingleResult())
@@ -94,6 +101,34 @@ public class GenerateDailyStatsTask {
 		long count = 0;
 		for (Tuple t : results) {
 			entityManager.persist(DailyRequestVolume.create(
+					t.get(1, LocalDate.class),
+					requestType,
+					t.get(0, Long.class)));
+			
+			count++;
+		}
+		
+		log.info("Inserted {} rows", count);
+	}
+	
+	private void updateSessionStats(RequestType requestType, Class<?> entity, LocalDateRange dateRange, FormatterType formatterType) {
+		CriteriaBuilder b = session.getCriteriaBuilder();
+
+		CriteriaQuery<Tuple> query = b.createQuery(Tuple.class);
+		Root<?> e = query.from(entity);
+
+		query.multiselect(b.countDistinct(e.get("sessionId")), e.get("created").as(LocalDate.class));
+
+		query.where(b.and(
+				b.equal(e.get("formatterType"), formatterType),
+				b.between(e.get("created").as(LocalDate.class), dateRange.getStart(), dateRange.getEndInclusive())));
+
+		query.groupBy(e.get("created").as(LocalDate.class));
+
+		List<Tuple> results = session.createQuery(query).getResultList();
+		long count = 0;
+		for (Tuple t : results) {
+			entityManager.persist(DailySession.create(
 					t.get(1, LocalDate.class),
 					requestType,
 					t.get(0, Long.class)));
