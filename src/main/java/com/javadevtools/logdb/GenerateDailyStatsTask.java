@@ -50,22 +50,22 @@ public class GenerateDailyStatsTask {
 			log.info("Generating stats for {} in range {}", requestType, requestVolumeDateRange);
 
 			switch (requestType) {
-				case SimpleDateFormat:
+				case SimpleDateFormat -> {
 					updateFormatStats(requestType, FormatLogEntry.class, requestVolumeDateRange, FormatterType.SimpleDateFormat);
 					updateSessionStats(requestType, FormatLogEntry.class, latestDailySessionDateRange, FormatterType.SimpleDateFormat);
-					break;
-				case DateTimeFormatter:
+				}
+				case DateTimeFormatter -> {
 					updateFormatStats(requestType, FormatLogEntry.class, requestVolumeDateRange, FormatterType.DateTimeFormatter);
 					updateSessionStats(requestType, FormatLogEntry.class, latestDailySessionDateRange, FormatterType.DateTimeFormatter);
-					break;
-				case SimpleDateFormatParse:
+				}
+				case SimpleDateFormatParse -> {
 					updateFormatStats(requestType, ParseLogEntry.class, requestVolumeDateRange, FormatterType.SimpleDateFormat);
 					updateSessionStats(requestType, ParseLogEntry.class, latestDailySessionDateRange, FormatterType.SimpleDateFormat);
-					break;					
-				case DateTimeFormatterParse:
+				}			
+				case DateTimeFormatterParse -> {
 					updateFormatStats(requestType, ParseLogEntry.class, requestVolumeDateRange, FormatterType.DateTimeFormatter);
 					updateSessionStats(requestType, ParseLogEntry.class, latestDailySessionDateRange, FormatterType.DateTimeFormatter);
-					break;
+				}
 			}
 		}
 	}
