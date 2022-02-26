@@ -21,14 +21,14 @@ public class FormtterService {
 	public Map<String, Object> format(String sessionId, DateFormatParams params, IDateFormatterWrapper formatter) {
 		entityManager.persist(FormatLogEntry.create(
 				sessionId,
-				params.getPattern(),
+				params.pattern(),
 				formatter.getType()));
 		
 		Map<String, Object> result = new HashMap<>();
 
 		try {
-			Locale locale = new Locale.Builder().setLanguageTag(params.getLocale()).build();
-			String value = formatter.format(params.getPattern(), locale, params.getTimeZone());
+			Locale locale = new Locale.Builder().setLanguageTag(params.locale()).build();
+			String value = formatter.format(params.pattern(), locale, params.timeZone());
 			result.put("value", value);
 		} catch (RuntimeException e) {
 			result.put("value", e.getMessage());
