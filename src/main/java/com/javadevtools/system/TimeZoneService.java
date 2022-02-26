@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class TimeZoneService {
     	timeZones = Arrays.stream(TimeZone.getAvailableIDs())
     			.map(id -> TimeZone.getTimeZone(id))
     			.sorted(Comparator.comparing(TimeZone::getID))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<TimeZone> getTimeZones() {

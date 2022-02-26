@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,7 @@ public class LocaleService {
         locales = Arrays.stream(Locale.getAvailableLocales())
                 .filter(l -> !l.getDisplayName().isBlank())
                 .sorted(Comparator.comparing(l -> l.toLanguageTag() + ": " + l.getDisplayName()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Locale> getLocales() {

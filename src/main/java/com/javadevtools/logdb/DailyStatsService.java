@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.persistence.PersistenceContext;
 import javax.persistence.Tuple;
@@ -110,7 +109,7 @@ public class DailyStatsService {
 	private List<Map<String, Object>> getDataFromTuple(List<Tuple> results, LocalDate start, LocalDate end) {
 		int resultIndex = 0;
 		List<Map<String, Object>> data = new ArrayList<>();
-		for (LocalDate d : start.datesUntil(end).collect(Collectors.toList())) {
+		for (LocalDate d : start.datesUntil(end).toList()) {
 			Map<String, Object> point = new HashMap<>();
 			point.put("x", d.toString());
 
