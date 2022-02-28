@@ -58,12 +58,17 @@ public class DateTimeFormatterParseWrapper implements IDateParseWrapper {
 				Quarter::from,
 				ZoneOffset::from);
 		
-		return accessor.getClass().getSimpleName() + ": " + accessor.toString();
+		String className = accessor.getClass().getSimpleName();
+		String s = accessor.toString();
+		if (s.startsWith(className)) {
+			return s;
+		} else {
+			return className + ": " + accessor.toString();
+		}
 	}
 
 	@Override
 	public FormatterType getType() {
 		return FormatterType.DateTimeFormatter;
 	}
-
 }
