@@ -18,7 +18,7 @@ public class HashGeneratorService {
 
 		for (String algorithm : algorithms) {
 			try {
-				byte[] bytes = params.getText().getBytes(StandardCharsets.UTF_8);
+				byte[] bytes = params.text().getBytes(StandardCharsets.UTF_8);
 				MessageDigest md = MessageDigest.getInstance(algorithm);
 				byte[] hash = md.digest(bytes);
 				String hashString = Hex.encodeHexString(hash);
