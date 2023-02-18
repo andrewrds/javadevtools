@@ -15,28 +15,28 @@ import com.javadevtools.logdb.ParseLogEntry;
 
 @Component
 public class ParseService {
-	@PersistenceContext
-	private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-	@Transactional
-	public Map<String, Object> format(String sessionId, ParseParams params, IDateParseWrapper formatter) {
-		entityManager.persist(ParseLogEntry.create(
-				sessionId,
-				params.getPattern(),
-				params.getText(),
-				formatter.getType()));
-		
-		Map<String, Object> result = new HashMap<>();
+    @Transactional
+    public Map<String, Object> format(String sessionId, ParseParams params, IDateParseWrapper formatter) {
+        entityManager.persist(ParseLogEntry.create(
+                sessionId,
+                params.getPattern(),
+                params.getText(),
+                formatter.getType()));
+        
+        Map<String, Object> result = new HashMap<>();
 
-		try {
-			Locale locale = new Locale.Builder().setLanguageTag(params.getLocale()).build();
-			String value = formatter.parse(params.getPattern(), params.getText(), locale, params.getTimeZone());
-			result.put("value", value);
-		} catch (RuntimeException | ParseException e) {
-			result.put("value", e.getMessage());
-			result.put("error", true);
-		}
+        try {
+            Locale locale = new Locale.Builder().setLanguageTag(params.getLocale()).build();
+            String value = formatter.parse(params.getPattern(), params.getText(), locale, params.getTimeZone());
+            result.put("value", value);
+        } catch (RuntimeException | ParseException e) {
+            result.put("value", e.getMessage());
+            result.put("error", true);
+        }
 
-		return result;
-	}
+        return result;
+    }
 }

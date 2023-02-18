@@ -12,9 +12,9 @@ public class TimeZoneService {
     private final List<TimeZone> timeZones;
     
     public TimeZoneService() {
-    	timeZones = Arrays.stream(TimeZone.getAvailableIDs())
-    			.map(id -> TimeZone.getTimeZone(id))
-    			.sorted(Comparator.comparing(TimeZone::getID))
+        timeZones = Arrays.stream(TimeZone.getAvailableIDs())
+                .map(id -> TimeZone.getTimeZone(id))
+                .sorted(Comparator.comparing(TimeZone::getID))
                 .toList();
     }
 

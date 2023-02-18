@@ -11,23 +11,23 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HashGeneratorService {
-	private static final String[] algorithms = { "MD5", "SHA1", "SHA-256", "SHA-512" };
+    private static final String[] algorithms = { "MD5", "SHA1", "SHA-256", "SHA-512" };
 
-	public Map<String, Object> generate(HashGenerateParams params) {
-		Map<String, Object> result = new HashMap<>();
+    public Map<String, Object> generate(HashGenerateParams params) {
+        Map<String, Object> result = new HashMap<>();
 
-		for (String algorithm : algorithms) {
-			try {
-				byte[] bytes = params.text().getBytes(StandardCharsets.UTF_8);
-				MessageDigest md = MessageDigest.getInstance(algorithm);
-				byte[] hash = md.digest(bytes);
-				String hashString = Hex.encodeHexString(hash);
-				result.put(algorithm.replace('-', '_'), hashString);
-			} catch (NoSuchAlgorithmException e) {
-				result.put(algorithm, "Unsupported");
-			}
-		}
+        for (String algorithm : algorithms) {
+            try {
+                byte[] bytes = params.text().getBytes(StandardCharsets.UTF_8);
+                MessageDigest md = MessageDigest.getInstance(algorithm);
+                byte[] hash = md.digest(bytes);
+                String hashString = Hex.encodeHexString(hash);
+                result.put(algorithm.replace('-', '_'), hashString);
+            } catch (NoSuchAlgorithmException e) {
+                result.put(algorithm, "Unsupported");
+            }
+        }
 
-		return result;
-	}
+        return result;
+    }
 }

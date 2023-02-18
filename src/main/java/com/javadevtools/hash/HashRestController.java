@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HashRestController {
-	private final HashGeneratorService generatorService;
+    private final HashGeneratorService generatorService;
 
-	public HashRestController(HashGeneratorService generatorService) {
-		this.generatorService = generatorService;
-	}
-	
-	@GetMapping("/hash/generate")
-	public Map<String, Object> simpleDateFormat(@Valid HashGenerateParams params) {
-		return generatorService.generate(params);
-	}
+    public HashRestController(HashGeneratorService generatorService) {
+        this.generatorService = generatorService;
+    }
+    
+    @GetMapping("/hash/generate")
+    public Map<String, Object> simpleDateFormat(@Valid HashGenerateParams params) {
+        return generatorService.generate(params);
+    }
 }

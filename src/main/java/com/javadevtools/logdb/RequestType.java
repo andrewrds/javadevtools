@@ -1,5 +1,5 @@
 package com.javadevtools.logdb;
 
 public enum RequestType {
-	SimpleDateFormat, SimpleDateFormatParse, DateTimeFormatter, DateTimeFormatterParse;
+    SimpleDateFormat, SimpleDateFormatParse, DateTimeFormatter, DateTimeFormatterParse;
 }

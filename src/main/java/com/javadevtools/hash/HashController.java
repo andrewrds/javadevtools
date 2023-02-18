@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HashController {
-	
-	@GetMapping("/hash")
-	public String hash() {
-		return "hash";
-	}
+    
+    @GetMapping("/hash")
+    public String hash() {
+        return "hash";
+    }
 }

@@ -7,7 +7,7 @@ import java.util.Locale;
 import com.javadevtools.dateformat.FormatterType;
 
 public interface IDateParseWrapper {
-	public String parse(String pattern, String text, Locale locale, ZoneId timeZone) throws ParseException;
-	
-	public FormatterType getType();
+    public String parse(String pattern, String text, Locale locale, ZoneId timeZone) throws ParseException;
+    
+    public FormatterType getType();
 }

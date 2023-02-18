@@ -16,35 +16,35 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		return handleBindException(ex, headers, status, request);
-	}
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
+        return handleBindException(ex, headers, status, request);
+    }
 
-	@Override
-	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
-			WebRequest request) {
+    @Override
+    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
+            WebRequest request) {
 
-		FieldError firstError = ex.getFieldError();
+        FieldError firstError = ex.getFieldError();
 
-		Map<String, Object> result = new HashMap<>();
-		result.put("value", firstError.getDefaultMessage());
+        Map<String, Object> result = new HashMap<>();
+        result.put("value", firstError.getDefaultMessage());
 
-		if (!isError(firstError, "dateFormatParams", "pattern", "NotBlank")
-				&& !isError(firstError, "parseParams", "pattern", "NotBlank")
-				&& !isError(firstError, "parseParams", "text", "NotBlank")
-				&& !isError(firstError, "parseParamsWithTimeZone", "pattern", "NotBlank")
-				&& !isError(firstError, "parseParamsWithTimeZone", "text", "NotBlank")) {
-			result.put("error", true);
-		}
+        if (!isError(firstError, "dateFormatParams", "pattern", "NotBlank")
+                && !isError(firstError, "parseParams", "pattern", "NotBlank")
+                && !isError(firstError, "parseParams", "text", "NotBlank")
+                && !isError(firstError, "parseParamsWithTimeZone", "pattern", "NotBlank")
+                && !isError(firstError, "parseParamsWithTimeZone", "text", "NotBlank")) {
+            result.put("error", true);
+        }
 
-		return handleExceptionInternal(ex, result, headers, HttpStatus.OK, request);
-	}
-	
-	private boolean isError(FieldError error, String objectName, String field, String code) {
-		return error.getObjectName().equals(objectName)
-				&& error.getField().equals(field) 
-				&& error.getCode().equals(code);
-	}
+        return handleExceptionInternal(ex, result, headers, HttpStatus.OK, request);
+    }
+    
+    private boolean isError(FieldError error, String objectName, String field, String code) {
+        return error.getObjectName().equals(objectName)
+                && error.getField().equals(field) 
+                && error.getCode().equals(code);
+    }
 }

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "uq_daily_session", columnNames = {"sessionDate", "requestType"}))
 public class DailySession {
-	
+    
     @Id
     @GeneratedValue
     private Long id;
@@ -25,20 +25,20 @@ public class DailySession {
     
     private long sessionCount;
     
-	public static DailySession create(LocalDate sessionDate, RequestType requestType, long sessionCount) {
-		DailySession result = new DailySession();
-		result.sessionDate = sessionDate;
-		result.requestType = requestType;
-		result.sessionCount = sessionCount;
-		return result;
-	}
+    public static DailySession create(LocalDate sessionDate, RequestType requestType, long sessionCount) {
+        DailySession result = new DailySession();
+        result.sessionDate = sessionDate;
+        result.requestType = requestType;
+        result.sessionCount = sessionCount;
+        return result;
+    }
 
-	public LocalDate getSessionDate() {
-		return sessionDate;
-	}
+    public LocalDate getSessionDate() {
+        return sessionDate;
+    }
 
-	public long getSessionCount() {
-		return sessionCount;
-	}
+    public long getSessionCount() {
+        return sessionCount;
+    }
     
 }

@@ -10,15 +10,15 @@ import com.javadevtools.logdb.DailyStatsService;
 
 @RestController
 public class AdminRestController {
-	private final DailyStatsService dailyStats;
-	
-	public AdminRestController(DailyStatsService dailyStats) {
-		this.dailyStats = dailyStats;
-	}
+    private final DailyStatsService dailyStats;
+    
+    public AdminRestController(DailyStatsService dailyStats) {
+        this.dailyStats = dailyStats;
+    }
 
-	@GetMapping("/admin/dailystats")
-	public Map<String, Object> admin(Map<String, Object> model) {
-		return dailyStats.getData();
-	}
-	
+    @GetMapping("/admin/dailystats")
+    public Map<String, Object> admin(Map<String, Object> model) {
+        return dailyStats.getData();
+    }
+    
 }

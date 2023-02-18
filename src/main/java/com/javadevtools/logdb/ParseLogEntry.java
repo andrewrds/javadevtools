@@ -36,17 +36,17 @@ public class ParseLogEntry {
     private FormatterType formatterType;
 
     public static ParseLogEntry create(
-    		String sessionId,
-    		String formatPattern,
-    		String parseText,
-    		FormatterType formatterType) {
-    	
-		ParseLogEntry logEntry = new ParseLogEntry();
-		logEntry.created = Instant.now();
-		logEntry.sessionId = sessionId;
-		logEntry.formatPattern = formatPattern;
-		logEntry.parseText = parseText;
-		logEntry.formatterType = formatterType;
-		return logEntry;
+            String sessionId,
+            String formatPattern,
+            String parseText,
+            FormatterType formatterType) {
+        
+        ParseLogEntry logEntry = new ParseLogEntry();
+        logEntry.created = Instant.now();
+        logEntry.sessionId = sessionId;
+        logEntry.formatPattern = formatPattern;
+        logEntry.parseText = parseText;
+        logEntry.formatterType = formatterType;
+        return logEntry;
     }
 }

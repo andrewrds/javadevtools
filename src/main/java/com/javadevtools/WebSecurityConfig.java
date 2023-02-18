@@ -11,33 +11,33 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	private final DataSource dataSource;
-	
-	public WebSecurityConfig(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
+    private final DataSource dataSource;
+    
+    public WebSecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-				.authorizeRequests()
-				.antMatchers("/admin/**").hasRole("ADMIN")
-				.anyRequest().permitAll()
-				.and()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
 
-				.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
 
-				.logout()
-				.permitAll();
-	}
+                .logout()
+                .permitAll();
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-				.dataSource(dataSource);
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .dataSource(dataSource);
 
-	}
+    }
 }

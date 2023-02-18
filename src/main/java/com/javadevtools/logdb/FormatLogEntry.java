@@ -32,11 +32,11 @@ public class FormatLogEntry {
     private FormatterType formatterType;
 
     public static FormatLogEntry create(String sessionId, String formatPattern, FormatterType formatterType) {
-		FormatLogEntry logEntry = new FormatLogEntry();
-		logEntry.created = Instant.now();
-		logEntry.sessionId = sessionId;
-		logEntry.formatPattern = formatPattern;
-		logEntry.formatterType = formatterType;
-		return logEntry;
+        FormatLogEntry logEntry = new FormatLogEntry();
+        logEntry.created = Instant.now();
+        logEntry.sessionId = sessionId;
+        logEntry.formatPattern = formatPattern;
+        logEntry.formatterType = formatterType;
+        return logEntry;
     }
 }
